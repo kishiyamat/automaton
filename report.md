@@ -105,4 +105,3 @@ https://tex.stackexchange.com/questions/20784/which-package-can-be-used-to-draw-
 \caption{Caption of the FSM}
 \label{fig:my_label}
 \end{figure}
-
