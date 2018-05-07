@@ -25,9 +25,9 @@ https://tex.stackexchange.com/questions/20784/which-package-can-be-used-to-draw-
 \begin{figure}[ht] % ’ht’ tells LaTeX to place the figure ’here’ or at the top of the page
 \centering % centers the figure
 \begin{tikzpicture}[shorten >=1pt,node distance=2cm,on grid,auto,thick] 
-   \node[state,initial]     (q_0)                       {$q_0$}; 
-   \node[state]             (q_2) [right of= q_0]       {$q_2$}; 
-   \node[state,accepting]   (q_1) [above right=of q_0]  {$q_1$}; 
+   \node[state,initial]     (q_0)                        {$q_0$}; 
+   \node[state]             (q_2) [right = of q_0]       {$q_2$}; 
+   \node[state,accepting]   (q_1) [above right = of q_0] {$q_1$}; 
     \path[->] 
     (q_0) edge              node {1} (q_1)
           edge [loop above] node {0} ()
@@ -40,4 +40,22 @@ https://tex.stackexchange.com/questions/20784/which-package-can-be-used-to-draw-
 \label{fig:my_label}
 \end{figure}
 
-(b) 
+(b) The set of all strings containing a total of exactly two 1's.
+
+\usetikzlibrary{automata,positioning}
+\begin{figure}[ht] % ’ht’ tells LaTeX to place the figure ’here’ or at the top of the page
+\centering % centers the figure
+\begin{tikzpicture}[shorten >=1pt,node distance=2cm,on grid,auto,thick] 
+   \node[state,initial]     (q_0)                  {$q_0$}; 
+   \node[state]             (q_1) [right = of q_0] {$q_1$}; 
+   \node[state,accepting]   (q_2) [right = of q_1] {$q_2$}; 
+    \path[->] 
+    (q_0) edge              node {1} (q_1)
+          edge [loop above] node {0} ()
+    (q_1) edge              node {1} (q_2)
+          edge [loop above] node {0} ()
+    (q_2) edge [loop above] node {0} ();
+\end{tikzpicture}
+\caption{Caption of the FSM}
+\label{fig:my_label}
+\end{figure}
