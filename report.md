@@ -97,12 +97,22 @@ https://tex.stackexchange.com/questions/20784/which-package-can-be-used-to-draw-
    \node[state]                   (q_3) [below = of q_1] {$q_3$}; 
     \path[->] 
     (q_0) edge node {0} (q_1)
-          edge node {1} ()
+          edge [loop above] node {1} ()
     (q_1) edge node {1} (q_2)
-          edge node {0} ()
-    (q_2) edge node {0} ();
+          edge [loop above] node {0} ()
+    (q_2) edge [loop above] node {0} ();
 \end{tikzpicture}
 \caption{Caption of the FSM}
 \label{fig:my_label}
 \end{figure}
+
+## 10. Draw a state diagram for a finite automaton corresponding to the following regular expressions.
+
+(a) 010*1
+
+(a) (010*1)*
+
+(a) (010*1)*1
+
+(a) (010*1)*1(0 U 1)*
 
