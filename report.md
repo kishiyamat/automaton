@@ -3,7 +3,7 @@ documentclass: ltjsarticle
 title: 言語情報解析演習I課題
 author: 岸山健
 id: 31-187002
-date: May 7, 2018
+date: May 14, 2018
 header-includes:
     \usepackage{tikz}
 ---
