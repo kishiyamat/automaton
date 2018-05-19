@@ -51,8 +51,9 @@ $$
 
 (b) $L_2 = \{x|x \mbox{contains any number of occurence of }a\mbox{ and }b\mbox{ in any order}\}$
 
-$G= \langle V_T, V_N, S, R \rangle$,
-where $V_T =\{a,b\}$; $V_N = \{S,A,B,F\}$; and
+    $G= \langle V_T, V_N, S, R \rangle$,
+    where $V_T =\{a,b\}$; $V_N = \{S,A,B,F\}$; and
+
 $$
 R = \left\{
 \begin{aligned}
@@ -83,8 +84,9 @@ $$
 
 (c) $L_3 = \{x \mbox{contains exactly two occurrences of a, not necessarily contiguous}\}$
 
-$G= \langle V_T, V_N, S, R \rangle$,
-where $V_T =\{a,b\}$; $V_N = \{S,A,B,F\}$; and
+    $G= \langle V_T, V_N, S, R \rangle$,
+    where $V_T =\{a,b\}$; $V_N = \{S,A,B,F\}$; and
+
 $$
 R = \left\{
 \begin{aligned}
@@ -116,15 +118,39 @@ $$
 
 (a) $L_4 = \{\}$
 
+    $G= \langle V_T, V_N, S, R \rangle$,
+    where $V_T =\{a,b\}$; $V_N = \{S,A,B,F\}$; and
+
 $$
-\left\{
+R = \left\{
 \begin{aligned}
-S &\rightarrow aS\\
-S &\rightarrow bS\\
-S &\rightarrow F
+S   &\rightarrow bF_1\\
+F_1 &\rightarrow \epsilon\\
+F_1 &\rightarrow aF_3\\
+S   &\rightarrow bF_2\\
+F_2 &\rightarrow \epsilon\\
+F_2 &\rightarrow aF_3\\
+F_3 &\rightarrow \epsilon
 \end{aligned}
 \right\}
 $$
+
+\usetikzlibrary{automata,positioning}
+\begin{figure}[ht] % ’ht’ tells LaTeX to place the figure ’here’ or at the top of the page
+\centering % centers the figure
+\begin{tikzpicture}[shorten >=1pt,node distance=2cm,on grid,auto,thick] 
+   \node[state,initial]     (S)                         {$S$}; 
+   \node[state,accepting]   (F1) [above right = of S]   {$F_1$}; 
+   \node[state,accepting]   (F2) [below right = of S]   {$F_2$}; 
+   \node[state,accepting]   (F3) [above right = of F2]  {$F_3$}; 
+    \path[->] 
+    (S)  edge              node {b} (F1)
+         edge              node {a} (F2)
+    (F1) edge              node {a} (F3)
+    (F2) edge              node {b} (F3);
+\end{tikzpicture}
+\end{figure}
+
 
 (a) $L_5 = \{\}$
 
