@@ -3,7 +3,7 @@ documentclass: ltjsarticle
 title: 言語情報解析演習I課題
 author: 岸山健
 id: 31-187002
-date: May 14, 2018
+date: May 21, 2018
 header-includes:
     \usepackage{tikz}
 ---
@@ -19,7 +19,7 @@ https://tex.stackexchange.com/questions/20784/which-package-can-be-used-to-draw-
 > 終端記号への遷移 $A \rightarrow x$ を "$A$ から final state $F$ への $x$ を入力とする遷移($A \rightarrow xF$)"とし、
 > 入力の無い遷移における入力を \epsilon  とする。
 > また、問では終端器号は指定されているが非終端記号は指定されていないため、
-> $V_N$ を $\{S,A,B,F\}$ とする。
+> $V_N$ を $\{S,A,B,F\}$ として一部の問に回答した。
 
 (a) $L_1 = \{aa,ab,ba,bb\}$
 
@@ -49,7 +49,7 @@ $$
 \end{tikzpicture}
 \end{figure}
 
-(b) $L_2 = \{x|x \mbox{contains any number of occurence of }a\mbox{ and }b\mbox{ in any order}\}$
+(b) $L_2 = \{x|x \mbox{ contains any number of occurence of }a\mbox{ and }b\mbox{ in any order}\}$
 
     $G= \langle V_T, V_N, S, R \rangle$,
     where $V_T =\{a,b\}$; $V_N = \{S,A,B,F\}$; and
@@ -87,114 +87,18 @@ $$
     $G= \langle V_T, V_N, S, R \rangle$,
     where $V_T =\{a,b\}$; $V_N = \{S,A,B,F\}$; and
 
-$$
-R = \left\{
-\begin{aligned}
-S &\rightarrow bS\\
-S &\rightarrow aA\\
-A &\rightarrow bA\\
-A &\rightarrow aF\\
-F &\rightarrow bF\\
-F &\rightarrow \epsilon
-\end{aligned}
-\right\}
-$$
+\newpage
 
-\usetikzlibrary{automata,positioning}
-\begin{figure}[ht] % ’ht’ tells LaTeX to place the figure ’here’ or at the top of the page
-\centering % centers the figure
-\begin{tikzpicture}[shorten >=1pt,node distance=2cm,on grid,auto,thick] 
-   \node[state,initial]     (S)                  {$S$}; 
-   \node[state]             (A) [right = of S] {$A$}; 
-   \node[state,accepting]   (F) [right = of A] {$F$}; 
-    \path[->] 
-    (S) edge              node {a} (A)
-          edge [loop above] node {b} ()
-    (A) edge              node {a} (F)
-          edge [loop above] node {b} ()
-    (F) edge [loop above] node {b} ();
-\end{tikzpicture}
-\end{figure}
-
-(a) $L_4 = \{\}$
+(d) L_4 =
 
     $G= \langle V_T, V_N, S, R \rangle$,
     where $V_T =\{a,b\}$; $V_N = \{S,A,B,F\}$; and
 
-$$
-R = \left\{
-\begin{aligned}
-S   &\rightarrow bF_1\\
-F_1 &\rightarrow \epsilon\\
-F_1 &\rightarrow aF_3\\
-S   &\rightarrow bF_2\\
-F_2 &\rightarrow \epsilon\\
-F_2 &\rightarrow aF_3\\
-F_3 &\rightarrow \epsilon
-\end{aligned}
-\right\}
-$$
+\newpage
 
-\usetikzlibrary{automata,positioning}
-\begin{figure}[ht] % ’ht’ tells LaTeX to place the figure ’here’ or at the top of the page
-\centering % centers the figure
-\begin{tikzpicture}[shorten >=1pt,node distance=2cm,on grid,auto,thick] 
-   \node[state,initial]     (S)                         {$S$}; 
-   \node[state,accepting]   (F1) [above right = of S]   {$F_1$}; 
-   \node[state,accepting]   (F2) [below right = of S]   {$F_2$}; 
-   \node[state,accepting]   (F3) [above right = of F2]  {$F_3$}; 
-    \path[->] 
-    (S)  edge              node {b} (F1)
-         edge              node {a} (F2)
-    (F1) edge              node {a} (F3)
-    (F2) edge              node {b} (F3);
-\end{tikzpicture}
-\end{figure}
+(e) L_5 =
 
+\newpage
 
-(a) $L_5 = \{\}$
+(f) L_6 =
 
-($$
-\left\{
-\begin{aligned}
-S &\rightarrow aS\\
-S &\rightarrow bS\\
-S &\rightarrow F
-\end{aligned}
-\right\}
-$$
-
-a) $L_6 = \{\}$
-
-$$
-\left\{
-\begin{aligned}
-S &\rightarrow aS\\
-S &\rightarrow bS\\
-S &\rightarrow F
-\end{aligned}
-\right\}
-$$
-
-\usetikzlibrary{automata,positioning}
-\begin{figure}[ht] % ’ht’ tells LaTeX to place the figure ’here’ or at the top of the page
-\centering % centers the figure
-\begin{tikzpicture}[shorten >=1pt,node distance=2cm,on grid,auto,thick] 
-   \node[state,initial]           (q_00)                 {$q\prime_0$}; 
-   \node[state]                   (q_0) [right = of q_00]{$q_0$}; 
-   \node[state]                   (q_1) [below = of q_0] {$q_1$}; 
-   \node[state]                   (q_2) [right = of q_1] {$q_2$}; 
-   \node[state]                   (q_3) [above = of q_2] {$q_3$}; 
-   \node[state,accepting]         (q_4) [right = of q_3] {$q_4$}; 
-    \path[->] 
-    (q_00)edge              node {$e$} (q_0)
-          edge [bend left, above] node {$e$} (q_3)
-    (q_0) edge              node {0} (q_1)
-    (q_1) edge              node {1} (q_2)
-    (q_2) edge              node {1} (q_3)
-          edge [loop right] node {0} ()
-    (q_3) edge [bend left, below] node {$e$} (q_0)
-          edge                    node {1} (q_4)
-    (q_4) edge [loop right] node {0,1} ();
-\end{tikzpicture}
-\end{figure}
