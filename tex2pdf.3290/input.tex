@@ -1,0 +1,101 @@
+\PassOptionsToPackage{unicode=true}{hyperref} % options for packages loaded elsewhere
+\PassOptionsToPackage{hyphens}{url}
+%
+\documentclass[]{ltjsarticle}
+\usepackage{lmodern}
+\usepackage{amssymb,amsmath}
+\usepackage{ifxetex,ifluatex}
+\usepackage{fixltx2e} % provides \textsubscript
+\ifnum 0\ifxetex 1\fi\ifluatex 1\fi=0 % if pdftex
+  \usepackage[T1]{fontenc}
+  \usepackage[utf8]{inputenc}
+  \usepackage{textcomp} % provides euro and other symbols
+\else % if luatex or xelatex
+  \usepackage{unicode-math}
+  \defaultfontfeatures{Ligatures=TeX,Scale=MatchLowercase}
+\fi
+% use upquote if available, for straight quotes in verbatim environments
+\IfFileExists{upquote.sty}{\usepackage{upquote}}{}
+% use microtype if available
+\IfFileExists{microtype.sty}{%
+\usepackage[]{microtype}
+\UseMicrotypeSet[protrusion]{basicmath} % disable protrusion for tt fonts
+}{}
+\IfFileExists{parskip.sty}{%
+\usepackage{parskip}
+}{% else
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{6pt plus 2pt minus 1pt}
+}
+\usepackage{hyperref}
+\hypersetup{
+            pdftitle={言語情報解析演習I課題},
+            pdfauthor={岸山健},
+            pdfborder={0 0 0},
+            breaklinks=true}
+\urlstyle{same}  % don't use monospace font for urls
+\usepackage[margin=1in]{geometry}
+\setlength{\emergencystretch}{3em}  % prevent overfull lines
+\providecommand{\tightlist}{%
+  \setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
+\setcounter{secnumdepth}{0}
+% Redefines (sub)paragraphs to behave more like sections
+\ifx\paragraph\undefined\else
+\let\oldparagraph\paragraph
+\renewcommand{\paragraph}[1]{\oldparagraph{#1}\mbox{}}
+\fi
+\ifx\subparagraph\undefined\else
+\let\oldsubparagraph\subparagraph
+\renewcommand{\subparagraph}[1]{\oldsubparagraph{#1}\mbox{}}
+\fi
+
+% set default figure placement to htbp
+\makeatletter
+\def\fps@figure{htbp}
+\makeatother
+
+\usepackage{tikz}
+
+\title{言語情報解析演習I課題}
+\author{岸山健}
+\date{May 28, 2018}
+
+\begin{document}
+\maketitle
+
+\hypertarget{exercises}{%
+\section{Exercises}\label{exercises}}
+
+\hypertarget{construct-a-non-deterministic-pda-which-accepts-every-string-which-of-the-form-anbn-or-of-the-form-a2nbn-for-all-n-geq-1.}{%
+\subsection{\texorpdfstring{7. Construct a non-deterministic pda which
+accepts every string which of the form \(a^nb^n\) or of the form
+\(a^{2n}b^n\) for all \emph{n} \(geq\)
+1.}{7. Construct a non-deterministic pda which accepts every string which of the form a\^{}nb\^{}n or of the form a\^{}\{2n\}b\^{}n for all n geq 1.}}\label{construct-a-non-deterministic-pda-which-accepts-every-string-which-of-the-form-anbn-or-of-the-form-a2nbn-for-all-n-geq-1.}}
+
+初期状態に対するaの入力でAをスタックし，bを超えた後で受理する言語を分岐させる．
+分岐させる先はaでAを消費する\(q_1\)と aaでAを消費する\(q_2\)とする．
+前者は \(a^nb^n\) を受理し， 後者は \(a^{2n}b^n\) を受理する．
+aabaaaなどは前者の場合スタックが足りず，
+後者の場合は遷移する先がないため拒否される．
+
+\(K = \{q^0, q^1\}\),
+
+\(\Sigma = \{a, b\}\),
+
+\(\Gamma = \{A\}\),
+
+Initial state = \(q_0\), \(F = \{q_1, q_2\}\),
+
+\[
+\Delta              =  \left\{
+                        \begin{aligned}
+                        &(q_0,a,e) &\rightarrow (q_0,A)\\
+                        &(q_0,b,e) &\rightarrow (q_1,e)\\
+                        &(q_0,b,e) &\rightarrow (q_2,e)\\
+                        &(q_1,a,A) &\rightarrow (q_1,e)\\
+                        &(q_2,aa,A) &\rightarrow (q_2,e)
+                        \end{aligned}
+                        \right\}
+\]
+
+\end{document}
