@@ -14,33 +14,27 @@ https://tex.stackexchange.com/questions/20784/which-package-can-be-used-to-draw-
 -->
 # Exercises
 
-## 7. Construct a non-deterministic pda which accepts every string which of the form $a^nb^n$ or of the form $a^{2n}b^n$ for all *n* $geq$ 1.
+## 7. Construct a non-deterministic pda which accepts every string which is of the form $a^nba^n$ or of the form $a^{2n}ba^n$ for all $n$ $\geq$ 1.
 
 初期状態に対するaの入力でAをスタックし、bを超えた後で受理する言語を分岐させる。
 分岐させる先はaでAを消費する$q_1$と
 aaでAを消費する$q_2$とする。
-前者は $a^nb^n$ を受理し、
-後者は $a^{2n}b^n$ を受理する。
+前者は $a^nba^n$ を受理し、
+後者は $a^{2n}ba^n$ を受理する。
 aabaaaなどは前者の場合スタックが足りず、
 後者の場合は遷移する先がないため拒否される。
 
-$K = \{q^0, q^1\}$, 
-
-$\Sigma = \{a, b\}$, 
-
-$\Gamma = \{A\}$, 
-
-Initial state =  $q_0$, 
-$F             =  \{q_1, q_2\}$, 
-
-$$
-\Delta              =  \left\{
-                        \begin{aligned}
-                        &(q_0,a,e) &\rightarrow (q_0,A)\\
-                        &(q_0,b,e) &\rightarrow (q_1,e)\\
-                        &(q_0,b,e) &\rightarrow (q_2,e)\\
-                        &(q_1,a,A) &\rightarrow (q_1,e)\\
-                        &(q_2,aa,A) &\rightarrow (q_2,e)
-                        \end{aligned}
-                        \right\}
-$$
+* States:          $$K      = \{q_0, q_1, q_2\}$$
+* Input alphabet:  $$\Sigma = \{a, b\}$$
+* Stack alphabet:  $$\Gamma = \{A\}$$
+* Initial state:   $$q_0$$
+* Final state:     $$F      = \{q_1, q_2\}$$
+* Transition:      $$\Delta= \left\{
+                              \begin{aligned}
+                              &(q_0,a,e)    &\rightarrow&(q_0,A)\\
+                              &(q_0,b,e)    &\rightarrow&(q_1,e)\\
+                              &(q_0,b,e)    &\rightarrow&(q_2,e)\\
+                              &(q_1,a,A)    &\rightarrow&(q_1,e)\\
+                              &(q_2,aa,A)   &\rightarrow&(q_2,e)
+                              \end{aligned}
+                              \right\}$$
