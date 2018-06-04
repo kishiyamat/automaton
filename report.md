@@ -3,7 +3,7 @@ documentclass: ltjsarticle
 title: 言語情報解析演習I課題
 author: 岸山健
 id: 31-187002
-date: May 28, 2018
+date: June 4, 2018
 header-includes:
     \usepackage{tikz}
 ---
@@ -14,27 +14,59 @@ https://tex.stackexchange.com/questions/20784/which-package-can-be-used-to-draw-
 -->
 # Exercises
 
-## 7. Construct a non-deterministic pda which accepts every string which is of the form $a^nba^n$ or of the form $a^{2n}ba^n$ for all $n$ $\geq$ 1.
+## 1. Construct context free grammars generating each of the following languages:
 
-初期状態に対するaの入力でAをスタックし、bを超えた後で受理する言語を分岐させる。
-分岐させる先はaでAを消費する$q_1$と
-aaでAを消費する$q_2$とする。
-前者は $a^nba^n$ を受理し、
-後者は $a^{2n}ba^n$ を受理する。
-aabaaaなどは前者の場合スタックが足りず、
-後者の場合は遷移する先がないため拒否される。
+(a) $L_1 = a^nb^ma^n(n,m \geq 1)$
 
-* States:          $$K      = \{q_0, q_1, q_2\}$$
-* Input alphabet:  $$\Sigma = \{a, b\}$$
-* Stack alphabet:  $$\Gamma = \{A\}$$
-* Initial state:   $$q_0$$
-* Final state:     $$F      = \{q_1, q_2\}$$
-* Transition:      $$\Delta= \left\{
-                              \begin{aligned}
-                              &(q_0,a,e)    &\rightarrow&(q_0,A)\\
-                              &(q_0,b,e)    &\rightarrow&(q_1,e)\\
-                              &(q_0,b,e)    &\rightarrow&(q_2,e)\\
-                              &(q_1,a,A)    &\rightarrow&(q_1,e)\\
-                              &(q_2,aa,A)   &\rightarrow&(q_2,e)
-                              \end{aligned}
-                              \right\}$$
+> $S \rightarrow aSa$
+
+> $S \rightarrow bS$
+
+> $S \rightarrow b$
+
+(b) $L_2 = a^nb^na^mb^m(n,m \geq 1)$
+
+> $S \rightarrow AA$
+
+> $S \rightarrow ab$
+
+> $S \rightarrow aAb$
+
+(c) $L_3 = \{ x \mbox{ | } x \in \{a,b\}^* \mbox{and }x\mbox{ contains twice as many } b \mbox{'s as }a \mbox{'s}\}$
+
+> $S \rightarrow e$
+
+> $S \rightarrow aBB$
+
+> $S \rightarrow bAB$
+
+> $S \rightarrow bBA$
+
+> $A \rightarrow aS$
+
+> $B \rightarrow bS$
+
+(d) $L_4 = \{xx^R \mbox{ | } x \in \{a,b\}^* \}$
+
+> $S \rightarrow e$
+
+> $S \rightarrow aSa$
+
+> $S \rightarrow bSb$
+
+(e) $L_5 = \{x \in \{a,b\}^* \mbox{ | } x = x^R \}$
+
+> $S \rightarrow e$
+
+> $S \rightarrow a$
+
+> $S \rightarrow b$
+
+> $S \rightarrow aSa$
+
+> $S \rightarrow bSb$
+
+## 4
+
+CFGが生成する$L$があり、$L^R$はCFGの右辺にreverseの操作を行なった結果の右辺で生成できると仮定するならば、
+CFGはreverseされてもCFGであるためreverseに対してclosedである。
