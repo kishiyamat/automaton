@@ -14,59 +14,40 @@ https://tex.stackexchange.com/questions/20784/which-package-can-be-used-to-draw-
 -->
 # Exercises
 
-## 1. Construct context free grammars generating each of the following languages:
+## 1. Construct a Turing machine that accepts any tape written on the vocabulary {0,1} and converts every contiguous string of two or more 1's to 0's. Everything else is left unchanged.
 
-(a) $L_1 = a^nb^ma^n(n,m \geq 1)$
+1が出てきたら0が出てくるまで進み、0が出てきたら左に戻り1を$q_2$状態の0に戻し、
+左に戻り1を0に戻す、という過程を0が出てくるまで繰り返す。0にあたったら状態を$q_0$に戻す。
 
-> $S \rightarrow aSa$
+$$
+\delta = \left\{
+\begin{aligned}
+(q_0, 0) &\rightarrow (q_0, R)\\
+(q_0, 1) &\rightarrow (q_1, R)\\
+(q_1, 0) &\rightarrow (q_0, R)\\
+(q_1, 1) &\rightarrow (q_2, R)\\
+(q_2, 1) &\rightarrow (q_2, R)\\
+(q_2, 0|\#) &\rightarrow (q_3, L)\\
+(q_3, 1) &\rightarrow (q_2, 0)\\
+(q_3, 0) &\rightarrow (q_0, 0)
+\end{aligned}
+\right\}
+$$
 
-> $S \rightarrow bS$
+## 2. Construct a Turing machine with three states {$q_0,q_1,q_2$},initial state,$q_0$, that begins with an input tape consisting entirely of blanks and halts with exactly three contiguous 1's on the tape.
 
-> $S \rightarrow b$
+初期状態を$q_0$とする3つの状態を持ち、入力は#のみのテープ。これを3つの1に書き換えて止まる様なTuring machineを作る、という解釈をしました。
+最初から3つ#を1に変えて初期状態に
 
-(b) $L_2 = a^nb^na^mb^m(n,m \geq 1)$
+$$
+\delta = \left\{
+\begin{aligned}
+(q_0, \#) &\rightarrow (q_1, 1)\\
+(q_1, 1) &\rightarrow (q_1, R)\\
+(q_1, \#) &\rightarrow (q_2, 1)\\
+(q_2, 1) &\rightarrow (q_2, R)\\
+(q_2, \#) &\rightarrow (q_0, 1)
+\end{aligned}
+\right\}
+$$
 
-> $S \rightarrow AA$
-
-> $S \rightarrow ab$
-
-> $S \rightarrow aAb$
-
-(c) $L_3 = \{ x \mbox{ | } x \in \{a,b\}^* \mbox{and }x\mbox{ contains twice as many } b \mbox{'s as }a \mbox{'s}\}$
-
-> $S \rightarrow e$
-
-> $S \rightarrow aBB$
-
-> $S \rightarrow bAB$
-
-> $S \rightarrow bBA$
-
-> $A \rightarrow aS$
-
-> $B \rightarrow bS$
-
-(d) $L_4 = \{xx^R \mbox{ | } x \in \{a,b\}^* \}$
-
-> $S \rightarrow e$
-
-> $S \rightarrow aSa$
-
-> $S \rightarrow bSb$
-
-(e) $L_5 = \{x \in \{a,b\}^* \mbox{ | } x = x^R \}$
-
-> $S \rightarrow e$
-
-> $S \rightarrow a$
-
-> $S \rightarrow b$
-
-> $S \rightarrow aSa$
-
-> $S \rightarrow bSb$
-
-## 4
-
-CFGが生成する$L$があり、$L^R$はCFGの右辺にreverseの操作を行なった結果の右辺で生成できると仮定するならば、
-CFGはreverseされてもCFGであるためreverseに対してclosedである。
