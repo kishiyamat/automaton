@@ -1,4 +1,4 @@
-# automaton
+﻿# automaton
 
 わりとしっかりパッケージも使えるみたい。
 簡単なレポート位だったらこれで終わりそう。
@@ -16,3 +16,5 @@ pdfを直で出してgitignoreにかけばいい。
 
 * [まだ Word で消耗してるの？ 大学のレポートを Markdown で書こう](https://qiita.com/Kumassy/items/5b6ae6b99df08fb434d9)
 
+
+こんにちはー
